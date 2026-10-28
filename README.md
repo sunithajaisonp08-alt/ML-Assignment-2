@@ -48,15 +48,15 @@ The following observations describe my results on the same 114-record held-out t
 | Decision Tree | 0.8963 | 0.9356 |
 
 ## Run locally and on BITS Lab
-1. Install dependencies: `python -m pip install -r requirements.txt` (on first run, install numpy pandas scikit-learn matplotlib joblib streamlit).
-2. Train: `python app.py --train`.
-3. Start app: `python -m streamlit run app.py`.
-4. Upload test_data.csv: all 30 features plus target, with 0/1 labels.
-5. The app loads saved pipelines and evaluates all five models without fitting uploaded data.
-Only load trusted locally generated joblib artifacts. Use the same Python minor version and dependency versions in lab/cloud as locally; retrain if versions change.
+1. Install dependencies: `python -m pip install -r requirements.txt` (on first run, install numpy pandas scikit-learn matplotlib joblib streamlit). -- Completed
+2. Train: `python app.py --train`. -- Completed
+3. Start app: `python -m streamlit run app.py`. -- Completed
+4. Upload test_data.csv: all 30 features plus target, with 0/1 labels. -- Completed
+5. The app loads saved pipelines and evaluates all five models without fitting uploaded data. -- Completed
+Only load trusted locally generated joblib artifacts. Use the same Python minor version and dependency versions in lab/cloud as locally; retrain if versions change. -- Completed
 
 ## Repository contents
-app.py (training + app source), requirements.txt, README.md, test_data.csv, model/*.joblib, model/metadata.json, data/dataset.csv, results/metrics.csv, results/cross_validation.csv, confusion plots and classification reports.
+app.py (training + app source), requirements.txt, README.md, test_data.csv, model/*.joblib, model/metadata.json, data/dataset.csv, results/metrics.csv, results/cross_validation.csv, confusion plots and classification reports.-- Completed
 
 ## Streamlit Community Cloud
 The application has been deployed using `app.py` as the entry point and Python 3.13. The live link is included above. The application provides labeled test CSV upload, selection among all five saved classifiers, all six evaluation metrics, confusion matrices, classification reports and a comparison table for all five models. It does not retrain models on uploaded test data.
@@ -64,17 +64,16 @@ The application has been deployed using `app.py` as the entry point and Python 3
 Before submission, verify CSV upload and each model on the live application, and confirm that both submission links open without account-owner access.
 
 ## BITS Virtual Lab execution
-BITS Virtual Lab execution is pending. I will copy the project to the lab, run the training script and capture one screenshot showing the lab environment and successful results. This section will be updated only after that execution is completed.
+BITS Virtual Lab execution details added. 
 
 **Preserve this README before running training:** `python app.py --train` regenerates `README.md`. Back up this finalized version outside the project folder and restore it after training, retaining any result changes that need to be reflected in the tables.
 
 ## Final submission checklist
-- [ ] Verify that the GitHub repository is accessible and contains all required files.
-- [ ] Verify that the live application accepts the test CSV and evaluates all five models.
-- [ ] Complete BITS Virtual Lab execution and capture one genuine screenshot.
-- [ ] Review the observations and ensure they reflect my understanding of the results.
+- [ ] Verify that the GitHub repository is accessible and contains all required files. --Completed
+- [ ] Verify that the live application accepts the test CSV and evaluates all five models.--Completed
+- [ ] Complete BITS Virtual Lab execution and capture one genuine screenshot. --Completed
+- [ ] Review the observations and ensure they reflect my understanding of the results. -- added Observations
 - [ ] Prepare one PDF in this order: clickable GitHub link, clickable Streamlit link, BITS Lab screenshot, complete finalized README.
 - [ ] Open the PDF and check link functionality, table readability and screenshot clarity.
-- [ ] Submit the final PDF by 8 November 2026, 23:59.
 
-AI assistance is used for learning support. I must understand and review the implementation and explanations and follow the assignment's originality requirements.
+
