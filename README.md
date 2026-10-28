@@ -11,8 +11,9 @@ The default loader uses sklearn's packaged copy; --data accepts original UCI wdb
 Split: stratified 80/20, seed 42; 455 training and 114 test rows. Scaling occurs inside pipelines fitted only on training data. Five-fold CV uses training data only. Model settings are predefined, not optimized on the test set.
 
 ## c. Github Repository Link
-TODO: Add your actual GitHub repository URL.
-Live Streamlit app: TODO: Add your deployed app URL.
+[GitHub Repository](https://github.com/sunithajaisonp08-alt/ML-Assignment-2)
+
+Live Streamlit app: [Cell Nucleus Model Explorer](https://ml-assignment-2-dnxpr2bgeeh9xhgjdva2i4.streamlit.app/)
 
 ## d. Models used
 Accuracy, AUC, precision, recall, F1 and MCC below use the identical held-out test set. Malignant is positive. AUC uses probability scores, not predicted labels. Precision/recall/F1 are binary, with zero_division=0.
@@ -26,14 +27,16 @@ Accuracy, AUC, precision, recall, F1 and MCC below use the identical held-out te
 | Support Vector Machine | 0.9737 | 0.9947 | 1.0000 | 0.9286 | 0.9630 | 0.9442 |
 
 ### Observations about model performance
+The following observations describe my results on the same 114-record held-out test set. Malignant is the positive class. These conclusions apply to this experiment and should not be treated as evidence of clinical performance.
+
 | ML Model Name | Observation about model performance |
 | --- | --- |
-| Logistic Regression | Held-out F1=0.9512, recall=0.9286, AUC=0.9960. Linear baseline; scaling supports optimization. Examine whether a linear boundary is sufficient. |
-| Decision Tree | Held-out F1=0.8571, recall=0.7857, AUC=0.9471. Captures nonlinear rules; depth and leaf limits reduce overfitting. Compare training-only validation with held-out results. |
-| KNN | Held-out F1=0.9383, recall=0.9048, AUC=0.9825. Distance-based classifier; scaling prevents large-scale features dominating distances. |
-| Naive Bayes | Held-out F1=0.8889, recall=0.8571, AUC=0.9891. Gaussian feature likelihoods; correlated nucleus measurements may limit its conditional-independence assumption. |
-| Support Vector Machine | Held-out F1=0.9630, recall=0.9286, AUC=0.9947. Scaled RBF kernel can model nonlinear boundaries; probabilities provide the AUC input. |
-| Overall winner | Logistic Regression: selected by highest mean training-only 5-fold CV F1, with CV AUC as tie-breaker. Test scores are a separate final evaluation. |
+| Logistic Regression | I observed an accuracy of 96.49% and the highest test AUC, 0.9960. Its recall of 0.9286 matched SVM, although its precision and F1 were slightly lower. This shows that a linear model provided a strong baseline for this dataset. It also achieved the highest mean training-only cross-validation F1, 0.9640, so it was the model selected by the predefined validation rule. |
+| Decision Tree | I observed the lowest accuracy, 90.35%, and the lowest malignant recall, 0.7857, among the five models. On this test set, it missed 9 of the 42 malignant cases. Although its rules are relatively easy to interpret, this fitted tree was less effective than the other classifiers in identifying malignant cases. These scores alone do not establish whether the cause was overfitting or underfitting. |
+| KNN | KNN achieved 95.61% accuracy, 0.9744 precision and 0.9383 F1. Its recall of 0.9048 means it identified 38 of the 42 malignant cases. I used scaling because KNN depends on distances between measurements. Its results were competitive, but its recall and F1 were below those of Logistic Regression and SVM on this split. |
+| Naive Bayes | Gaussian Naive Bayes achieved 92.11% accuracy and 0.8889 F1, below Logistic Regression, KNN and SVM. Its AUC of 0.9891 was nevertheless high, showing that ranking performance and classification at the model's default decision rule can differ. Correlated nucleus measurements could affect its conditional-independence assumption, but this is a possible explanation rather than a cause established by these results. |
+| Support Vector Machine | SVM achieved the highest test accuracy, 97.37%, F1, 0.9630, and MCC, 0.9442. Its precision of 1.0000 means it produced no false-positive malignant predictions on these 114 records. Recall was 0.9286, so it still missed 3 of the 42 malignant cases. I therefore consider it the strongest performer on the held-out test set by accuracy, F1 and MCC, without interpreting perfect precision as perfect overall classification. |
+| Overall, winner for this dataset? | SVM was the winner on the held-out test set by accuracy, F1 and MCC. However, Logistic Regression was the model selected before test evaluation because its mean training-only five-fold CV F1 was higher (0.9640 versus 0.9610 for SVM). I distinguish the test-set winner from the validation-selected model; I did not use the test results to tune the models. |
 
 ### Training-only cross-validation
 | ML Model Name | CV F1 | CV AUC |
@@ -56,8 +59,22 @@ Only load trusted locally generated joblib artifacts. Use the same Python minor 
 app.py (training + app source), requirements.txt, README.md, test_data.csv, model/*.joblib, model/metadata.json, data/dataset.csv, results/metrics.csv, results/cross_validation.csv, confusion plots and classification reports.
 
 ## Streamlit Community Cloud
-Push the required files to your GitHub repository. Create an app in Streamlit Community Cloud, choose the repository and branch, and set app.py as the main file. Configure a compatible Python version. Verify CSV upload, model selection, metrics and confusion matrix on the live URL.
+The application has been deployed using `app.py` as the entry point and Python 3.13. The live link is included above. The application provides labeled test CSV upload, selection among all five saved classifiers, all six evaluation metrics, confusion matrices, classification reports and a comparison table for all five models. It does not retrain models on uploaded test data.
 
-## Final submission - action required
-Execute the project on BITS Virtual Lab and capture your own screenshot. Review the code and replace these generated observations with your own interpretation. Add real GitHub and live app links. Create one PDF in this order: GitHub link, live app link, BITS execution screenshot, full finalized README content. Check both clickable links and submit by 8 November 2026, 23:59.
-AI is a learning aid; understand and adapt the implementation and follow your institution's originality requirements. No lab screenshot, deployment or submission is performed by this script.
+Before submission, verify CSV upload and each model on the live application, and confirm that both submission links open without account-owner access.
+
+## BITS Virtual Lab execution
+BITS Virtual Lab execution is pending. I will copy the project to the lab, run the training script and capture one screenshot showing the lab environment and successful results. This section will be updated only after that execution is completed.
+
+**Preserve this README before running training:** `python app.py --train` regenerates `README.md`. Back up this finalized version outside the project folder and restore it after training, retaining any result changes that need to be reflected in the tables.
+
+## Final submission checklist
+- [ ] Verify that the GitHub repository is accessible and contains all required files.
+- [ ] Verify that the live application accepts the test CSV and evaluates all five models.
+- [ ] Complete BITS Virtual Lab execution and capture one genuine screenshot.
+- [ ] Review the observations and ensure they reflect my understanding of the results.
+- [ ] Prepare one PDF in this order: clickable GitHub link, clickable Streamlit link, BITS Lab screenshot, complete finalized README.
+- [ ] Open the PDF and check link functionality, table readability and screenshot clarity.
+- [ ] Submit the final PDF by 8 November 2026, 23:59.
+
+AI assistance is used for learning support. I must understand and review the implementation and explanations and follow the assignment's originality requirements.
